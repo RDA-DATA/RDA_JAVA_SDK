@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration debug="false" scan="true" scanPeriod="30 seconds" packagingData="true">
+
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+
+	<statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+	<!-- <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" /> -->
+
+	<!-- APPENDER -->
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{HH:mm:ss.SSS} [%-5level] [%-16.16thread] [%-36.36logger{36}] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="console_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>1024</queueSize>
+		<appender-ref ref="console" />
+	</appender>
+
+	<!-- LOGGER -->
+
+	<logger name="com.sds.iot.sdk" level="debug" additivity="false"><appender-ref ref="console_ASYNC" /></logger>
+	<root level="info"><appender-ref ref="console_ASYNC" /></root>
+
+</configuration>

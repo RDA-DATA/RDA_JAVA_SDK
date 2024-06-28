@@ -1,0 +1,15 @@
+com.sds.iot.sdk
+com.sds.iot.sdk.auth
+com.sds.iot.sdk.auth.ita
+com.sds.iot.sdk.auth.mutual
+com.sds.iot.sdk.callback
+com.sds.iot.sdk.exception
+com.sds.iot.sdk.message
+com.sds.iot.sdk.message.compress
+com.sds.iot.sdk.message.encrypt
+com.sds.iot.sdk.message.headerformat
+com.sds.iot.sdk.protocol
+com.sds.iot.sdk.protocol.http
+com.sds.iot.sdk.protocol.mqtt
+com.sds.iot.sdk.protocol.tls
+com.sds.iot.sdk.util
