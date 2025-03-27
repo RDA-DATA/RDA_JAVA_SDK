@@ -26,10 +26,11 @@ public class ConfigFileUtil {
 
 	/**
 	 * 설정 파일 읽기
+	 * 
 	 * @param props
-     *        설정값
+	 *                      설정값
 	 * @param propsFilePath
-     *        설정 파일 경로
+	 *                      설정 파일 경로
 	 */
 	public static void loadProps(Properties props, String propsFilePath) {
 
@@ -64,7 +65,7 @@ public class ConfigFileUtil {
 	 * 설정 파일 생성
 	 * 
 	 * @param filePath
-     *        설정 파일 경로
+	 *                 설정 파일 경로
 	 * @return 생성된 파일 (InputStream)
 	 */
 	public static InputStream createFileInputStream(String filePath) {
@@ -81,25 +82,30 @@ public class ConfigFileUtil {
 			path = file.getAbsolutePath();
 			LOGGER.trace("****** file : {}", path);
 
+			try {
+				return new FileInputStream(file);
+			} catch (FileNotFoundException e) {
+				LOGGER.warn("****** cannot read a file : {}", file.getAbsolutePath());
+				return null;
+			}
+
 		} else {
-			path = SslProperties.class.getClassLoader().getResource("").getPath() + filePath;
-			file = new File(path);
-			LOGGER.trace("****** file (classpath) : {}", path);
+			// RDA_DATA: getResource("") 오류발생하여 수정
+			return ConfigFileUtil.class.getClassLoader().getResourceAsStream(filePath);
+
+			// path = SslProperties.class.getClassLoader().getResource("").getPath() +
+			// filePath;
+			// file = new File(path);
+			// LOGGER.trace("****** file (classpath) : {}", path);
 		}
 
-		try {
-			return new FileInputStream(file);
-		} catch (FileNotFoundException e) {
-			LOGGER.warn("****** cannot read a file : {}", file.getAbsolutePath());
-			return null;
-		}
 	}
 
 	/**
 	 * 설정 정보 생성
 	 * 
 	 * @param in
-     *        input stream
+	 *           input stream
 	 * @return 생성된 설정 정보 (byte[])
 	 */
 	public static byte[] createBytesFromInputStream(InputStream in) {
@@ -123,15 +129,16 @@ public class ConfigFileUtil {
 	 * Replace all occurrences of a substring within a string with another string.
 	 * 
 	 * @param str
-	 *        String to examine
+	 *                   String to examine
 	 * @param oldPattern
-	 *        String to replace
+	 *                   String to replace
 	 * @param newPattern
-	 *        String to insert
+	 *                   String to insert
 	 * @return a String with the replacements
 	 */
 	private static String replace(String str, String oldPattern, String newPattern) {
-		if (!(str != null && str.length() > 0) || !(oldPattern != null && oldPattern.length() > 0) || newPattern == null) {
+		if (!(str != null && str.length() > 0) || !(oldPattern != null && oldPattern.length() > 0)
+				|| newPattern == null) {
 			return str;
 		}
 		StringBuilder sb = new StringBuilder();
@@ -152,19 +159,20 @@ public class ConfigFileUtil {
 
 	/**
 	 * 파일에서 읽은 설정 정보를 객체 변수에 매핑
-     * 
+	 * 
 	 * @param props
-     *        설정
+	 *                       설정
 	 * @param propertyPrefix
-     *        설정 키 접두사
+	 *                       설정 키 접두사
 	 * @param obj
-     *        설정 값 매핑 대상 객체
+	 *                       설정 값 매핑 대상 객체
 	 * @param varName
-     *        설정 값 매핑 변수명
+	 *                       설정 값 매핑 변수명
 	 * @param valType
-     *        설정 값 매핑 타입
+	 *                       설정 값 매핑 타입
 	 */
-	public static void invokeSetterIfExists(Properties props, String propertyPrefix, Object obj, String varName, Class<?> valType) {
+	public static void invokeSetterIfExists(Properties props, String propertyPrefix, Object obj, String varName,
+			Class<?> valType) {
 		String propertyName = propertyPrefix + varName;
 		String valStr = props.getProperty(propertyName);
 		if (valStr != null) {
