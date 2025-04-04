@@ -110,4 +110,9 @@ TRUST_KEYSTORE_PASSWORD=
 
 ## 4. 참고사항
 - 인증 방식 중 ITA만 샘플 코드를 작성하였습니다.
-- 인증에는 사이트 아이디, 장비별 인증코드, 사물 명이 필수 파라미터이며, 인증에 아이디/패스워드는 사용하지 않으므로 제공하지 않습니다. 
+- 인증에는 사이트 아이디, 장비별 인증코드, 사물 명이 필수 파라미터이며, 인증에 아이디/패스워드는 사용하지 않으므로 제공하지 않습니다.
+
+## 자주 묻는 질문
+- [SDK 실행 전 확인해야 할 사항들](https://github.com/RDA-DATA/RDA_JAVA_SDK/issues/10)
+- [시스템 로그에는 정상적으로 입력되었다는 로그가 나오나 poc 사이트에서 확인해보면 데이터 입력이 안되어있는 현상](https://github.com/RDA-DATA/RDA_JAVA_SDK/issues/11)
+- [소스내용 중 sitdId 와 thingName, authCode 값 확인하는법](https://github.com/RDA-DATA/RDA_JAVA_SDK/issues/12)
