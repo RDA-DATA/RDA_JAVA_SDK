@@ -81,8 +81,8 @@ public class App {
 ### biot_client.properties
 <pre>
 
-apiServerAddr=https://poc-brighticsiot.samsungsds.com
-serverAddr=ssl://poc-brighticsiot.samsungsds.com:8009
+apiServerAddr=https://poc.rda.go.kr:8088/
+serverAddr=ssl://poc.rda.go.kr:8001
 
 retry.connectRetryMaxCount=3
 retry.connectRetryDelayRandomRange=0
