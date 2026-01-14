@@ -19,7 +19,7 @@ public class App {
     public static void main(String[] args) {
         try {
             // authCode - ita 장비 인증정보 입니다.  등록한 사물의 사물정보 화면에서 정보를 입력해주세요.
-            String siteId = "C000000037";
+            String siteId = "C000000004";
             String thingName = "SDK_SAMPLE_MODEL.0625";
             String authCode = "373f8d68055caf9e";
 
